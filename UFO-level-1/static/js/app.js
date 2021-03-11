@@ -3,7 +3,7 @@ var tableData = data;
 
 // use tbody which is empty now
 // add an id to this section in the index.
-var tbody_section = d3.select("#table1");
+var tbody_section = d3.select("tbody");
 var filter_btn = d3.select("#filter-btn")
 var form1 = d3.select("form")
 
@@ -19,8 +19,6 @@ tableData.forEach(function(ufo_sights){
     });
 });
 
-
-
 form1.on("submit", filter_tbl);
 filter_btn.on("click", filter_tbl);
 
@@ -31,17 +29,19 @@ function filter_tbl() {
     d3.event.preventDefault();
 
     var dateToFilter = d3.select("#datetime");
-
     var dt_value = dateToFilter.property("value");
 
     //var filteredData = people.filter(person => person.bloodType === inputValue);
     var filteredData = tableData.filter( x => x.datetime === dt_value);
     
-    tableData.forEach(function() {
-        d3.select("#table1").remove();
+    //clean tbody section to enter the new filtered data
+    tbody_section.html('');
 
-    });
-
+    // this section only removes the tbody_section 
+    // tableData.forEach(function() {
+    //     d3.select("tbody_section").remove();
+    // });
+    
     filteredData.forEach(function(tbl){
         var row = tbody_section.append("tr")
         Object.entries(tbl).forEach(function([key, value]){
@@ -51,5 +51,4 @@ function filter_tbl() {
         } );
     });
 
-  
 };
