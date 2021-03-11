@@ -3,10 +3,10 @@ var tableData = data;
 
 // use tbody which is empty now
 // add an id to this section in the index.
-var tbody_section = d3.select("tbody");
+var tbody_section = d3.select("#table1");
+
 var filter_btn = d3.select("#filter-btn")
 var form1 = d3.select("form")
-
 
 // Use data and go through each row
 tableData.forEach(function(ufo_sights){
@@ -21,7 +21,6 @@ tableData.forEach(function(ufo_sights){
 
 form1.on("submit", filter_tbl);
 filter_btn.on("click", filter_tbl);
-
 
 function filter_tbl() {
 
@@ -39,7 +38,7 @@ function filter_tbl() {
 
     // this section only removes the tbody_section 
     // tableData.forEach(function() {
-    //     d3.select("tbody_section").remove();
+    //     d3.select("#table1").remove();
     // });
     
     filteredData.forEach(function(tbl){
